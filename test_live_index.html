@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HardwareQuest: Збери свій ПК — Навчально-ігровий тренажер (8 клас)</title>
+  <meta name="description" content="Інтерактивний навчально-ігровий веб-тренажер з апаратного забезпечення персонального комп'ютера для учнів 8 класу з генерацією іменного PDF-сертифіката.">
+  <meta name="keywords" content="інформатика 8 клас, апаратне забезпечення ПК, процесор, оперативна пам'ять, SSD, пристрої введення виведення, мережеві пристрої, сертифікат">
+  <meta name="author" content="HardwareQuest Team">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HardwareQuest: Збери свій ПК">
+  <meta property="og:description" content="Перевір свої знання з апаратного забезпечення комп'ютера та отримай іменний PDF-сертифікат!">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (logo.svg) -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/icons/logo.svg">
+  <link rel="apple-touch-icon" href="assets/icons/logo.svg">
+
+  <!-- Google Fonts: Inter & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/certificate.css">
+
+  <!-- html2pdf.js for Client-Side PDF Generation (Local bundle for offline & GitHub Pages) -->
+  <script src="js/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Confetti Canvas for Victory Animation -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Top App Navigation / HUD -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper" onclick="location.hash='#'; app.navigateToScreen('start');">
+        <img src="assets/icons/logo.svg" alt="HardwareQuest Logo" class="brand-logo-img">
+        <div>
+          <span class="brand-title">HardwareQuest</span>
+          <span class="brand-badge">8 КЛАС • ІНФОРМАТИКА</span>
+        </div>
+      </div>
+
+      <div class="hud-stats">
+        <!-- Student Info Tag (Dynamic) -->
+        <div class="student-tag" id="hudStudentTag" style="display:none;"></div>
+
+        <!-- Score Badge (out of 100) -->
+        <div class="score-badge" title="Загальний бал квесту">
+          <span>🏆</span>
+          <span id="hudScoreValue">0 / 100 б.</span>
+        </div>
+
+        <!-- Audio Toggle Button -->
+        <button class="audio-toggle-btn" id="audioToggleBtn" title="Увімкнути/вимкнути звукові ефекти">
+          <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          Звук: Увімк.
+        </button>
+
+        <!-- Rules & Grading Scale Button -->
+        <button class="btn-quest btn-quest-secondary" id="btnOpenRules" style="padding:6px 12px;font-size:0.8rem;">
+          ℹ️ Правила
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive 6-Module Progress Bar -->
+  <nav class="progress-container" aria-label="Прогрес проходження модулів">
+    <ol class="progress-steps">
+      <li class="step-item active" data-module-id="1">
+        <div class="step-indicator">
+          <img src="assets/images/cpu.svg" alt="1" />
+        </div>
+        <span class="step-title">1. Процесор</span>
+      </li>
+      <li class="step-item" data-module-id="2">
+        <div class="step-indicator">
+          <img src="assets/images/ssd.svg" alt="2" />
+        </div>
+        <span class="step-title">2. Пам'ять</span>
+      </li>
+      <li class="step-item" data-module-id="3">
+        <div class="step-indicator">
+          <img src="assets/images/keyboard.svg" alt="3" />
+        </div>
+        <span class="step-title">3. Введення</span>
+      </li>
+      <li class="step-item" data-module-id="4">
+        <div class="step-indicator">
+          <img src="assets/images/monitor.svg" alt="4" />
+        </div>
+        <span class="step-title">4. Виведення</span>
+      </li>
+      <li class="step-item" data-module-id="5">
+        <div class="step-indicator">
+          <img src="assets/images/router.svg" alt="5" />
+        </div>
+        <span class="step-title">5. Мережа</span>
+      </li>
+      <li class="step-item" data-module-id="6">
+        <div class="step-indicator">
+          <img src="assets/images/desktop.svg" alt="6" />
+        </div>
+        <span class="step-title">6. Види ПК</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Main View Router -->
+  <main class="main-content">
+
+    <!-- ====================================================================
+         SCREEN 1: START SCREEN & REGISTRATION
+         ==================================================================== -->
+    <section class="screen-view active" id="start">
+      <div class="hero-card">
+        <div class="hero-glow-circle"></div>
+        <div class="hero-glow-circle left"></div>
+
+        <div class="hero-badge-top">
+          ⚡ Навчально-ігровий веб-тренажер
+        </div>
+
+        <h1 class="hero-title">Апаратне забезпечення<br>персонального комп'ютера</h1>
+        <p class="hero-subtitle">
+          Пройди захопливий квест із 6 ігрових модулів, навчися підбирати комплектуючі як справжній комп'ютерний інженер та отримай офіційний іменний PDF-сертифікат з оцінкою!
+        </p>
+
+        <!-- Feature cards -->
+        <div class="features-grid">
+          <div class="feature-pill">
+            <div class="feature-icon-wrapper">
+              <img src="assets/images/cpu.svg" alt="Модулі">
+            </div>
+            <div class="feature-text">
+              <h4>6 Тематичних модулів</h4>
+              <p>CPU, RAM/SSD, пристрої введення й виведення, комп'ютерні мережі та класифікація ПК.</p>
+            </div>
+          </div>
+
+          <div class="feature-pill">
+            <div class="feature-icon-wrapper">
+              <img src="assets/images/motherboard.svg" alt="12 балів">
+            </div>
+            <div class="feature-text">
+              <h4>12-бальна шкала оцінювання</h4>
+              <p>Миттєвий підрахунок результату відповідно до критеріїв навчальної програми України (макс. 100 балів).</p>
+            </div>
+          </div>
+
+          <div class="feature-pill">
+            <div class="feature-icon-wrapper">
+              <img src="assets/icons/badge-gold.svg" alt="Сертифікат">
+            </div>
+            <div class="feature-text">
+              <h4>Іменний PDF-сертифікат</h4>
+              <p>Автоматичне формування офіційного сертифіката формату А4 для підтвердження твоїх досягнень.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Registration Form (Only Full Name) -->
+        <div class="registration-box">
+          <form id="studentRegistrationForm">
+            <div class="form-group">
+              <label for="studentFullName" class="form-label">Прізвище та Ім'я учня / учениці: <span style="color:var(--cyan)">*</span></label>
+              <input type="text" id="studentFullName" class="form-input" placeholder="Наприклад: Шевченко Дарина" required autocomplete="name">
+              <div class="form-hint">Ці дані будуть надруковані у твоєму іменному PDF-сертифікаті.</div>
+            </div>
+
+            <div class="start-actions">
+              <button type="submit" class="btn-quest btn-quest-primary">
+                Розпочати квест 🚀
+              </button>
+              <button type="button" id="btnResumeQuest" class="btn-quest btn-quest-secondary" style="display:none;">
+                Продовжити попередній сеанс 🔄
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 2: INTERACTIVE MODULE VIEW (MODES 1-6)
+         ==================================================================== -->
+    <section class="screen-view" id="moduleView">
+      <div class="module-header-card">
+        <div class="module-header-info">
+          <div class="module-header-icon">
+            <img src="assets/images/cpu.svg" id="modHeaderIcon" alt="Module Icon">
+          </div>
+          <div>
+            <div class="module-meta-badge" id="modMetaBadge">Модуль 1</div>
+            <h2 class="module-main-title" id="modMainTitle">Процесор та його характеристики</h2>
+            <div class="module-desc-text" id="modDescText">Опис завдання</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theory Quick Reference Accordion -->
+      <div class="theory-accordion">
+        <button class="theory-accordion-toggle" type="button" onclick="const c = document.getElementById('theoryContentArea'); c.style.display = c.style.display === 'none' ? 'block' : 'none';">
+          <span>📚 Теоретична довідка для учня (натисни, щоб приховати/показати)</span>
+          <span>▼</span>
+        </button>
+        <div class="theory-content" id="theoryContentArea">
+          <div class="theory-summary" id="theorySummaryText"></div>
+          <div class="theory-points-grid" id="theoryPointsGrid"></div>
+        </div>
+      </div>
+
+      <!-- Dynamic Interactive Workspace -->
+      <div class="workspace-card" id="moduleInteractiveArea"></div>
+
+      <!-- Module Navigation Footer -->
+      <div class="module-footer-nav">
+        <div class="module-feedback-badge">
+          <span>💡 Бали зберігаються автоматично після кожного виконаного завдання.</span>
+        </div>
+        <div>
+          <button class="btn-quest btn-quest-primary" id="btnNextModule">
+            До наступного модуля ➡️
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 3: RESULTS & CERTIFICATE SCREEN
+         ==================================================================== -->
+    <section class="screen-view" id="resultsView">
+      <div class="results-summary-card">
+        <div class="results-badge-congrats">🎉 Вітаємо з успішним проходженням квесту!</div>
+        <h2 class="results-main-title">Твій результат: <span id="resStudentName">Учень</span></h2>
+        <p class="results-desc" id="resCommentary">
+          Блискучий результат! Усі 6 модулів апаратного забезпечення успішно вивчено.
+        </p>
+
+        <!-- Metric Cards -->
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-label">Оцінка (1-12 балів)</div>
+            <div class="metric-val grade-highlight" id="resGradeValue">12 з 12</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Рівень досягнень</div>
+            <div class="metric-val" id="resLevelValue" style="font-size:1.3rem;">Високий</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Набрані бали</div>
+            <div class="metric-val" id="resScoreValue">100 / 100</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Успішність</div>
+            <div class="metric-val" id="resPercentValue">100%</div>
+          </div>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="cert-action-bar">
+          <button class="btn-quest btn-quest-primary" id="btnDownloadPDF">
+            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Зберегти сертифікат у PDF
+          </button>
+
+          <button class="btn-quest btn-quest-secondary" id="btnRestartQuest">
+            🔄 Пройти знову
+          </button>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           A4 LANDSCAPE CERTIFICATE TEMPLATE (WITHOUT TEACHER SIGNATURE)
+           ================================================================== -->
+      <div class="certificate-preview-wrapper">
+        <div class="certificate-container" id="certificateToExport">
+          <!-- Background security patterns -->
+          <div class="certificate-bg-pattern"></div>
+          <div class="certificate-outer-border"></div>
+          <div class="certificate-inner-border"></div>
+
+          <!-- Ornate cyber corners -->
+          <div class="cert-corner top-left"></div>
+          <div class="cert-corner top-right"></div>
+          <div class="cert-corner bottom-left"></div>
+          <div class="cert-corner bottom-right"></div>
+
+          <!-- Certificate Content Layer -->
+          <div class="certificate-content">
+            <!-- Header -->
+            <div class="cert-header">
+              <div class="cert-logo-group">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibG9nb0N5YmVyR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGYzZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMzOGJkZjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTg1NWY3Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJjb3JlR2xvdyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzOGJkZjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDI4NGM3Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGZpbHRlciBpZD0ibmVvbkdsb3ciIHg9Ii0yMCUiIHk9Ii0yMCUiIHdpZHRoPSIxNDAlIiBoZWlnaHQ9IjE0MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzIiByZXN1bHQ9ImJsdXIiLz4KICAgICAgPGZlQ29tcG9zaXRlIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9ImJsdXIiIG9wZXJhdG9yPSJvdmVyIi8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CgogIDwhLS0gT3V0ZXIgRGFyayBDaXJjdWl0IEJhc2UgQm9hcmQgLS0+CiAgPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9Ijg0IiBoZWlnaHQ9Ijg0IiByeD0iMTgiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0idXJsKCNsb2dvQ3liZXJHcmFkKSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgCiAgPCEtLSBPdXRlciBHb2xkIFBpbnMgb24gYWxsIDQgc2lkZXMgLS0+CiAgPCEtLSBUb3AgUGlucyAtLT4KICA8bGluZSB4MT0iMjgiIHkxPSIyIiB4Mj0iMjgiIHkyPSI4IiBzdHJva2U9IiNmYWNjMTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjQyIiB5MT0iMiIgeDI9IjQyIiB5Mj0iOCIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI1OCIgeTE9IjIiIHgyPSI1OCIgeTI9IjgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iNzIiIHkxPSIyIiB4Mj0iNzIiIHkyPSI4IiBzdHJva2U9IiNmYWNjMTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBCb3R0b20gUGlucyAtLT4KICA8bGluZSB4MT0iMjgiIHkxPSI5MiIgeDI9IjI4IiB5Mj0iOTgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iNDIiIHkxPSI5MiIgeDI9IjQyIiB5Mj0iOTgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iNTgiIHkxPSI5MiIgeDI9IjU4IiB5Mj0iOTgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iNzIiIHkxPSI5MiIgeDI9IjcyIiB5Mj0iOTgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIExlZnQgUGlucyAtLT4KICA8bGluZSB4MT0iMiIgeTE9IjI4IiB4Mj0iOCIgeTI9IjI4IiBzdHJva2U9IiNmYWNjMTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjIiIHkxPSI0MiIgeDI9IjgiIHkyPSI0MiIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIyIiB5MT0iNTgiIHgyPSI4IiB5Mj0iNTgiIHN0cm9rZT0iI2ZhY2MxNSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMiIgeTE9IjcyIiB4Mj0iOCIgeTI9IjcyIiBzdHJva2U9IiNmYWNjMTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPCEtLSBSaWdodCBQaW5zIC0tPgogIDxsaW5lIHgxPSI5MiIgeTE9IjI4IiB4Mj0iOTgiIHkyPSIyOCIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI5MiIgeTE9IjQyIiB4Mj0iOTgiIHkyPSI0MiIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI5MiIgeTE9IjU4IiB4Mj0iOTgiIHkyPSI1OCIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI5MiIgeTE9IjcyIiB4Mj0iOTgiIHkyPSI3MiIgc3Ryb2tlPSIjZmFjYzE1IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgoKICA8IS0tIENvcm5lciBOb3RjaCAvIFBpbiAxIGluZGljYXRvciAtLT4KICA8cG9seWdvbiBwb2ludHM9IjEyLDI0IDI0LDEyIDEyLDEyIiBmaWxsPSIjZmFjYzE1Ii8+CgogIDwhLS0gTmVvbiBDaXJjdWl0IFRyYWNlcyAtLT4KICA8cGF0aCBkPSJNMjIgMzYgSDMyIFY0NiIgc3Ryb2tlPSIjMDBmM2ZmIiBzdHJva2Utd2lkdGg9IjIuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMjIiIGN5PSIzNiIgcj0iMi41IiBmaWxsPSIjMDBmM2ZmIi8+CiAgCiAgPHBhdGggZD0iTTc4IDM2IEg2OCBWNDYiIHN0cm9rZT0iI2E4NTVmNyIgc3Ryb2tlLXdpZHRoPSIyLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9Ijc4IiBjeT0iMzYiIHI9IjIuNSIgZmlsbD0iI2E4NTVmNyIvPgoKICA8cGF0aCBkPSJNMjIgNjQgSDMyIFY1NCIgc3Ryb2tlPSIjMDBmM2ZmIiBzdHJva2Utd2lkdGg9IjIuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMjIiIGN5PSI2NCIgcj0iMi41IiBmaWxsPSIjMDBmM2ZmIi8+CgogIDxwYXRoIGQ9Ik03OCA2NCBINjggVjU0IiBzdHJva2U9IiNhODU1ZjciIHN0cm9rZS13aWR0aD0iMi41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSI3OCIgY3k9IjY0IiByPSIyLjUiIGZpbGw9IiNhODU1ZjciLz4KCiAgPCEtLSBDZW50cmFsIFNpbGljb24gRGllIC8gUHJvY2Vzc29yIENvcmUgLS0+CiAgPHJlY3QgeD0iMjgiIHk9IjI4IiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMCIgZmlsbD0idXJsKCNjb3JlR2xvdykiIHN0cm9rZT0iIzAwZjNmZiIgc3Ryb2tlLXdpZHRoPSIyLjUiIGZpbHRlcj0idXJsKCNuZW9uR2xvdykiLz4KCiAgPCEtLSBJbnRlcm5hbCBNaWNyb2FyY2hpdGVjdHVyZSBHcmlkIEdlb21ldHJpYyBQYXR0ZXJuIC0tPgogIDxyZWN0IHg9IjM1IiB5PSIzNSIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiByeD0iMyIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjNjdlOGY5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjUyIiB5PSIzNSIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiByeD0iMyIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjYzA4NGZjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjM1IiB5PSI1MiIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiByeD0iMyIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjNjdlOGY5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjUyIiB5PSI1MiIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEzIiByeD0iMyIgZmlsbD0iIzBmMTcyYSIgc3Ryb2tlPSIjYzA4NGZjIiBzdHJva2Utd2lkdGg9IjEuNSIvPgoKICA8IS0tIENlbnRlciBEaWFtb25kIFF1YW50dW0gR2xvdyBDb3JlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iNTAsNDQgNTYsNTAgNTAsNTYgNDQsNTAiIGZpbGw9IiNmZmZmZmYiIGZpbHRlcj0iZHJvcC1zaGFkb3coMCAwIDRweCAjMDBmM2ZmKSIvPgo8L3N2Zz4=" alt="Logo" class="cert-logo-icon">
+                <div class="cert-org-text">
+                  <h4>HardwareQuest • Академія інформатики</h4>
+                  <p>Освітня навчально-ігрова платформа для середньої школи</p>
+                </div>
+              </div>
+
+              <div class="cert-id-badge">
+                <span class="label">ID Сертифіката:</span>
+                <span class="val" id="certVerificationId">HQ-2026-8742</span>
+              </div>
+            </div>
+
+            <!-- Title Section -->
+            <div class="cert-title-section">
+              <h1>Сертифікат</h1>
+              <div class="cert-subtitle">про успішне засвоєння навчальної теми з інформатики</div>
+            </div>
+
+            <!-- Recipient Section -->
+            <div class="cert-recipient-section">
+              <div class="cert-present-text">Цим підтверджується, що</div>
+              <div class="cert-student-name" id="certStudentName">Шевченко Дарина</div>
+            </div>
+
+            <!-- Topic Box -->
+            <div class="cert-topic-section">
+              <p class="cert-topic-text">
+                успішно пройшов(ла) повний теоретичний та практичний курс тестування за темою:<br>
+                <strong>«Апаратне забезпечення персонального комп'ютера»</strong> (CPU, RAM/ROM, накопичувачі, пристрої введення/виведення, комп'ютерні мережі та класифікація ПК).
+              </p>
+            </div>
+
+            <!-- Results Grid -->
+            <div class="cert-results-grid">
+              <div class="cert-stat-box">
+                <div class="cert-stat-label">Підсумкові бали</div>
+                <div class="cert-stat-value" id="certPointsEarned">100 / 100</div>
+              </div>
+
+              <div style="text-align:center;">
+                <div class="cert-grade-badge" id="certGradeBadge">
+                  <span class="grade-num" id="certGradeNumber">12</span>
+                  <span class="grade-text" id="certGradeLevel">Високий рівень (Відмінно)</span>
+                </div>
+              </div>
+
+              <div class="cert-stat-box">
+                <div class="cert-stat-label">Відсоток точності</div>
+                <div class="cert-stat-value" id="certPercentValue">100%</div>
+              </div>
+            </div>
+
+            <!-- Footer: Date, Seal, Digital Verification (NO signature field) -->
+            <div class="cert-footer">
+              <div class="cert-date-block">
+                <div>Дата видачі: <strong id="certIssueDate">19 жовтня 2026 року</strong></div>
+                <div style="font-size:10px;color:#94a3b8;margin-top:2px;">Сформовано автоматично за результатами квесту</div>
+              </div>
+
+              <div class="cert-seal-block">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj4NCiAgPGRlZnM+DQogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnb2xkTWVkYWwiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+DQogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmVmMDhhIi8+DQogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2VhYjMwOCIvPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTE2MjA3Ii8+DQogICAgPC9yYWRpYWxHcmFkaWVudD4NCiAgPC9kZWZzPg0KICA8IS0tIFJpYmJvbiBiZWhpbmQgLS0+DQogIDxwb2x5Z29uIHBvaW50cz0iNDUsMTEwIDMwLDE1NSA1NSwxNDAgODAsMTU1IDY1LDExMCIgZmlsbD0iI2RjMjYyNiIvPg0KICA8cG9seWdvbiBwb2ludHM9IjExNSwxMTAgMTAwLDE1NSAxMjUsMTQwIDE1MCwxNTUgMTM1LDExMCIgZmlsbD0iI2I5MWMxYyIvPg0KICA8IS0tIFJvc2V0dGUgTWVkYWwgU3RhciAtLT4NCiAgPGNpcmNsZSBjeD0iODAiIGN5PSI3NSIgcj0iNTQiIGZpbGw9InVybCgjZ29sZE1lZGFsKSIgc3Ryb2tlPSIjY2E4YTA0IiBzdHJva2Utd2lkdGg9IjMiLz4NCiAgPGNpcmNsZSBjeD0iODAiIGN5PSI3NSIgcj0iNDQiIGZpbGw9IiMwZjE3MmEiIHN0cm9rZT0iI2ZlZjA4YSIgc3Ryb2tlLXdpZHRoPSIyIi8+DQogIDxjaXJjbGUgY3g9IjgwIiBjeT0iNzUiIHI9IjM4IiBmaWxsPSJub25lIiBzdHJva2U9IiNmYWNjMTUiIHN0cm9rZS1kYXNoYXJyYXk9IjMsMiIvPg0KICA8IS0tIFN0YXIgaWNvbiAvIExhdXJlbCAtLT4NCiAgPHBvbHlnb24gcG9pbnRzPSI4MCw1MCA4Niw2MyAxMDAsNjQgODksNzQgOTIsODggODAsODAgNjgsODggNzEsNzQgNjAsNjQgNzQsNjMiIGZpbGw9IiNmZWYwOGEiLz4NCiAgPCEtLSBUZXh0IGFyb3VuZCBzZWFsIC0tPg0KICA8dGV4dCB4PSI4MCIgeT0iMTAyIiBmb250LWZhbWlseT0iU2Vnb2UgVUksIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjgiIGZpbGw9IiNmZWYwOGEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj7QktCG0JTQnNCG0J3QndCePC90ZXh0Pg0KPC9zdmc+" alt="Офіційна відзнака" class="cert-seal-image">
+              </div>
+
+              <div class="cert-status-block">
+                <span class="cert-status-badge">✓ Електронно верифіковано</span>
+                <span style="font-size:10px;color:#64748b;margin-top:4px;">Дійсний для шкільного звіту</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       MODAL: RULES & 12-POINT GRADING CRITERIA
+       ====================================================================== -->
+  <div class="modal-overlay" id="rulesModal">
+    <div class="modal-window">
+      <button class="modal-close-btn" id="btnCloseRules">&times;</button>
+      <h3 style="color:var(--cyan);margin-bottom:1rem;font-size:1.3rem;">ℹ️ Правила проходження та критерії оцінювання</h3>
+      
+      <p style="font-size:0.9rem;color:#cbd5e1;line-height:1.5;margin-bottom:1rem;">
+        Веб-тренажер <strong>«HardwareQuest: Збери свій ПК»</strong> створено для учнів 8 класів. Максимальна можлива сума балів дорівнює <strong>100 балам</strong>, розподілених між 6 навчальними модулями:
+      </p>
+
+      <ul style="margin-left:1.5rem;font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem;">
+        <li><strong>Модуль 1:</strong> Процесор та його характеристики (15 балів).</li>
+        <li><strong>Модуль 2:</strong> Пристрої збереження інформації (20 балів).</li>
+        <li><strong>Модуль 3:</strong> Пристрої введення інформації (15 балів).</li>
+        <li><strong>Модуль 4:</strong> Пристрої виведення інформації (15 балів).</li>
+        <li><strong>Модуль 5:</strong> Мережеві пристрої (20 балів).</li>
+        <li><strong>Модуль 6:</strong> Види сучасних комп'ютерів (15 балів).</li>
+      </ul>
+
+      <h4 style="color:#ffffff;margin-bottom:8px;font-size:1rem;">Критерії переведення балів у 12-бальну оцінку:</h4>
+      <table class="grading-table">
+        <thead>
+          <tr>
+            <th>Відсоток успішності (бали)</th>
+            <th>Оцінка (1–12)</th>
+            <th>Рівень навчальних досягнень</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>93% – 100% (93–100 б.)</td><td><strong>12</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
+          <tr><td>85% – 92% (85–92 б.)</td><td><strong>11</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
+          <tr><td>78% – 84% (78–84 б.)</td><td><strong>10</strong></td><td style="color:#10b981;">Високий</td></tr>
+          <tr><td>70% – 77% (70–77 б.)</td><td><strong>9</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>62% – 69% (62–69 б.)</td><td><strong>8</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>54% – 61% (54–61 б.)</td><td><strong>7</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>46% – 53% (46–53 б.)</td><td><strong>6</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>38% – 45% (38–45 б.)</td><td><strong>5</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>30% – 37% (30–37 б.)</td><td><strong>4</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>20% – 29% (20–29 б.)</td><td><strong>3</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+          <tr><td>10% – 19% (10–19 б.)</td><td><strong>2</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+          <tr><td>0% – 9% (0–9 б.)</td><td><strong>1</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:1.5rem;text-align:right;">
+        <button class="btn-quest btn-quest-primary" onclick="document.getElementById('rulesModal').classList.remove('active');" style="padding:8px 18px;font-size:0.85rem;">
+          Зрозуміло, до гри!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (Cleaned according to requirement 4) -->
+  <footer class="app-footer">
+    <p>
+      Навчально-ігровий веб-тренажер <strong>«HardwareQuest: Збери свій ПК»</strong> • Курс «Інформатика» 8 клас
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/modules.js"></script>
+  <script src="js/pdf-generator.js"></script>
+  <script src="js/app.js"></script>
+
+<div id="testOutput">WAITING...</div>
+<script>
+window.addEventListener('load', async () => {
+  try {
+    const student = { fullName: 'Шевченко Дарина', certId: 'HQ-2026-9999' };
+    const grade = { grade: 12, level: 'Високий рівень', pointsEarned: 100, percentage: 100, color: '#10b981' };
+
+    window.certificateManager.renderCertificateData(student, grade);
+
+    let capturedPdf = null;
+    const origSave = window.jsPDF.prototype.save;
+    window.jsPDF.prototype.save = function(name) {
+      capturedPdf = {
+        filename: name,
+        pages: this.internal.getNumberOfPages(),
+        w: this.internal.pageSize.getWidth(),
+        h: this.internal.pageSize.getHeight()
+      };
+    };
+
+    await window.certificateManager.downloadCertificatePDF(student, grade);
+
+    document.getElementById('testOutput').textContent = JSON.stringify({
+      success: true,
+      capturedPdf: capturedPdf
+    });
+  } catch (e) {
+    document.getElementById('testOutput').textContent = 'ERROR: ' + e.message + ' ' + e.stack;
+  }
+});
+</script>
+</body>
+
+</html>

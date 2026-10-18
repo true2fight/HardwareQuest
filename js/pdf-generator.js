@@ -84,42 +84,95 @@ class CertificateManager {
       return;
     }
 
+    // Adapt font-size for long student names
+    const nameEl = document.getElementById("certStudentName");
+    if (nameEl && studentData.fullName) {
+      nameEl.style.fontSize = studentData.fullName.length > 25 ? "26px" : "34px";
+    }
+
     const fullNameParts = (studentData.fullName || "Учень").trim().split(/\s+/);
     const surname = fullNameParts[0] || "Учень";
     const firstName = fullNameParts[1] || "";
     const namePart = firstName ? `${surname}_${firstName}` : surname;
     const filename = `Сертифікат_${this.sanitizeFilename(namePart)}.pdf`;
 
-    if (typeof html2pdf !== "undefined") {
-      const opt = {
-        margin: [0, 0, 0, 0],
-        filename: filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: {
+    try {
+      if (typeof window.html2canvas !== "undefined" && typeof window.jsPDF !== "undefined") {
+        // High-DPI capture of the exact 1000x700 certificate container
+        const canvas = await window.html2canvas(certElement, {
           scale: 2,
           useCORS: true,
           logging: false,
-          letterRendering: true,
-          backgroundColor: '#ffffff'
-        },
-        jsPDF: {
+          backgroundColor: '#ffffff',
+          width: 1000,
+          height: 700
+        });
+
+        // Initialize standard A4 Landscape PDF (297mm x 210mm)
+        const pdf = new window.jsPDF({
+          orientation: 'landscape',
           unit: 'mm',
           format: 'a4',
-          orientation: 'landscape',
           compress: true
-        }
-      };
+        });
 
-      try {
+        const pageWidth = 297;
+        const pageHeight = 210;
+
+        // Container aspect ratio: 1000 / 700 = 1.42857
+        const canvasRatio = canvas.width / canvas.height;
+
+        // Perfectly proportioned centered frame:
+        // Width: 280 mm (leaves 8.5 mm margin left and right)
+        // Height: 196 mm (leaves 7.0 mm margin top and bottom)
+        const maxW = 280;
+        const maxH = 196;
+
+        let imgW = maxW;
+        let imgH = imgW / canvasRatio;
+
+        if (imgH > maxH) {
+          imgH = maxH;
+          imgW = imgH * canvasRatio;
+        }
+
+        // Exact horizontal and vertical centering
+        const posX = (pageWidth - imgW) / 2;
+        const posY = (pageHeight - imgH) / 2;
+
+        const imgData = canvas.toDataURL('image/jpeg', 0.98);
+        pdf.addImage(imgData, 'JPEG', posX, posY, imgW, imgH, undefined, 'FAST');
+
+        // Trigger direct browser file save
+        pdf.save(filename);
+      } else if (typeof html2pdf !== "undefined") {
+        // Fallback with exact centered margins
+        const opt = {
+          margin: [7, 8.5, 7, 8.5],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff'
+          },
+          jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'landscape',
+            compress: true
+          }
+        };
+
         await html2pdf().set(opt).from(certElement).save();
-      } catch (err) {
-        console.error("html2pdf generation error:", err);
-        alert("Помилка під час формування PDF-файлу. Будь ласка, спробуйте ще раз.");
-      } finally {
-        this.resetButton(downloadBtn, originalBtnText);
+      } else {
+        alert("Бібліотека генерації PDF недоступна. Будь ласка, оновіть сторінку.");
       }
-    } else {
-      alert("Бібліотека генерації PDF недоступна. Будь ласка, оновіть сторінку.");
+    } catch (err) {
+      console.error("PDF generation error:", err);
+      alert("Помилка під час формування PDF-файлу. Будь ласка, спробуйте ще раз.");
+    } finally {
       this.resetButton(downloadBtn, originalBtnText);
     }
   }

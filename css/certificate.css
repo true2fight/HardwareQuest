@@ -14,8 +14,11 @@
 
 .certificate-container {
   width: 1000px;
-  min-width: 900px;
+  min-width: 1000px;
+  max-width: 1000px;
   height: 700px;
+  min-height: 700px;
+  max-height: 700px;
   background: #ffffff;
   color: #0f172a;
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 243, 255, 0.2);
