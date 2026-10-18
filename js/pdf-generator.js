@@ -98,15 +98,38 @@ class CertificateManager {
 
     try {
       if (typeof window.html2canvas !== "undefined" && typeof window.jsPDF !== "undefined") {
-        // High-DPI capture of the exact 1000x700 certificate container
-        const canvas = await window.html2canvas(certElement, {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          backgroundColor: '#ffffff',
-          width: 1000,
-          height: 700
-        });
+        // Clone certificate into an isolated container positioned at (0, 0)
+        // This eliminates any vertical window scroll offset or parent layout shift
+        const clone = certElement.cloneNode(true);
+        const holder = document.createElement("div");
+        holder.style.position = "fixed";
+        holder.style.top = "0px";
+        holder.style.left = "0px";
+        holder.style.width = "1000px";
+        holder.style.height = "700px";
+        holder.style.zIndex = "999999";
+        holder.style.overflow = "hidden";
+        holder.style.backgroundColor = "#ffffff";
+        holder.appendChild(clone);
+        document.body.appendChild(holder);
+
+        let canvas;
+        try {
+          canvas = await window.html2canvas(clone, {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff',
+            width: 1000,
+            height: 700,
+            x: 0,
+            y: 0,
+            scrollX: 0,
+            scrollY: 0
+          });
+        } finally {
+          document.body.removeChild(holder);
+        }
 
         // Initialize standard A4 Landscape PDF (297mm x 210mm)
         const pdf = new window.jsPDF({
@@ -155,7 +178,9 @@ class CertificateManager {
             scale: 2,
             useCORS: true,
             logging: false,
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
+            scrollX: 0,
+            scrollY: 0
           },
           jsPDF: {
             unit: 'mm',
