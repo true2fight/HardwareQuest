@@ -114,22 +114,13 @@ class CertificateManager {
         await html2pdf().set(opt).from(certElement).save();
       } catch (err) {
         console.error("html2pdf generation error:", err);
-        this.fallbackPrintOption(filename);
+        alert("Помилка під час формування PDF-файлу. Будь ласка, спробуйте ще раз.");
       } finally {
         this.resetButton(downloadBtn, originalBtnText);
       }
     } else {
-      this.fallbackPrintOption(filename);
+      alert("Бібліотека генерації PDF недоступна. Будь ласка, оновіть сторінку.");
       this.resetButton(downloadBtn, originalBtnText);
-    }
-  }
-
-  fallbackPrintOption(suggestedFilename) {
-    const userChoice = confirm(
-      `Бажаєте зберегти сертифікат через вікно друку?\n(Оберіть «Зберегти як PDF» у списку принтерів).`
-    );
-    if (userChoice) {
-      window.print();
     }
   }
 
@@ -139,10 +130,6 @@ class CertificateManager {
       btn.innerHTML = text;
     }
     this.isGenerating = false;
-  }
-
-  printCertificate() {
-    window.print();
   }
 }
 

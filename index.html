@@ -29,11 +29,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/certificate.css">
 
-  <!-- html2pdf.js for Client-Side PDF Generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" 
-          integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWQV46GjGTVNxU7uwAqVPEFXn075TmNTXYMEY1909eNRqP9W8UnLNzx62ff0AA==" 
-          crossorigin="anonymous" 
-          referrerpolicy="no-referrer"></script>
+  <!-- html2pdf.js for Client-Side PDF Generation (Local bundle for offline & GitHub Pages) -->
+  <script src="js/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -271,7 +268,7 @@
           </div>
         </div>
 
-        <!-- Action Toolbar (Without Copy Report button) -->
+        <!-- Action Toolbar -->
         <div class="cert-action-bar">
           <button class="btn-quest btn-quest-primary" id="btnDownloadPDF">
             <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -279,16 +276,7 @@
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            Завантажити сертифікат у PDF
-          </button>
-
-          <button class="btn-quest btn-quest-secondary" id="btnPrintCert">
-            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 6 2 18 2 18 9"></polyline>
-              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-              <rect x="6" y="14" width="12" height="8"></rect>
-            </svg>
-            Роздрукувати сертифікат
+            Зберегти сертифікат у PDF
           </button>
 
           <button class="btn-quest btn-quest-secondary" id="btnRestartQuest">

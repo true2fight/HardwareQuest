@@ -53,6 +53,24 @@ const MODULES_DATA = [
       ],
       availableCpus: [
         {
+          id: "cpu_asic",
+          name: "Specialized Crypto ASIC Microchip",
+          categoryName: "Вузькоспеціалізований чип майнінгу",
+          icon: "assets/images/cpu_asic.svg",
+          specs: "Фіксований обчислювач хешів SHA-256 • Не підтримує команди x86 • Не може запустити Windows, офісні програми чи ігри.",
+          optimalFor: null,
+          feedback: "Цей чип уміє рахувати лише один криптографічний алгоритм і взагалі не здатний запустити жодну програму на ПК!"
+        },
+        {
+          id: "cpu_office",
+          name: "Core i3-12100 / Ryzen 3 4300G",
+          categoryName: "Збалансований процесор з iGPU",
+          icon: "assets/images/cpu_office.svg",
+          specs: "4 ядра / 8 потоків • 3.3–4.3 GHz • Кеш 12 MB • Вбудована графіка UHD iGPU • TDP 60 Вт • Доступна ціна.",
+          optimalFor: "pc_office",
+          feedback: "Ідеальний вибір для офісу! 4 швидких ядер достатньо для навчання, а вбудоване відеоядро заощаджує кошти на відеокарті."
+        },
+        {
           id: "cpu_outdated",
           name: "Intel Celeron N4020 Dual-Core",
           categoryName: "Двоядерний енергоефективний чип",
@@ -60,6 +78,15 @@ const MODULES_DATA = [
           specs: "2 ядра / 2 потоки • 1.1–2.4 GHz • Лише 2 MB кеш • Базова графіка UHD 600 • Низьке енергоспоживання 6 Вт.",
           optimalFor: null,
           feedback: "Невдалий вибір! Лише 2 слабких ядра з низькою базовою частотою 1.1 GHz та 2 MB кешу не впораються навіть із плавним переглядом сучасних веб-сторінок і відеоуроків."
+        },
+        {
+          id: "cpu_server",
+          name: "AMD EPYC 9354 / Intel Xeon Scalable",
+          categoryName: "Багатоядерний серверний гігант",
+          icon: "assets/images/cpu_server.svg",
+          specs: "32 ядра / 64 потоки • 2.8–3.8 GHz • Кеш 256 MB • 8-канальна пам'ять ECC DDR5 • 128 ліній PCIe • Робота 24/7.",
+          optimalFor: "pc_server",
+          feedback: "Точно в ціль! 32 ядра та корекція помилок пам'яті ECC забезпечують безвідмовну роботу сервера баз даних."
         },
         {
           id: "cpu_gaming",
@@ -78,33 +105,6 @@ const MODULES_DATA = [
           specs: "1 мікроядро • 120 MHz (0.12 GHz) • 512 KB пам'яті • Енергоспоживання 0.1 Вт • Не сумісний з архітектурою x86 Windows.",
           optimalFor: null,
           feedback: "Цей чип створений для розумних годинників, пральних машин або датчиків температури, а не для ПК чи серверів!"
-        },
-        {
-          id: "cpu_office",
-          name: "Core i3-12100 / Ryzen 3 4300G",
-          categoryName: "Збалансований процесор з iGPU",
-          icon: "assets/images/cpu_office.svg",
-          specs: "4 ядра / 8 потоків • 3.3–4.3 GHz • Кеш 12 MB • Вбудована графіка UHD iGPU • TDP 60 Вт • Доступна ціна.",
-          optimalFor: "pc_office",
-          feedback: "Ідеальний вибір для офісу! 4 швидких ядер достатньо для навчання, а вбудоване відеоядро заощаджує кошти на відеокарті."
-        },
-        {
-          id: "cpu_asic",
-          name: "Specialized Crypto ASIC Microchip",
-          categoryName: "Вузькоспеціалізований чип майнінгу",
-          icon: "assets/images/cpu_asic.svg",
-          specs: "Фіксований обчислювач хешів SHA-256 • Не підтримує команди x86 • Не може запустити Windows, офісні програми чи ігри.",
-          optimalFor: null,
-          feedback: "Цей чип уміє рахувати лише один криптографічний алгоритм і взагалі не здатний запустити жодну програму на ПК!"
-        },
-        {
-          id: "cpu_server",
-          name: "AMD EPYC 9354 / Intel Xeon Scalable",
-          categoryName: "Багатоядерний серверний гігант",
-          icon: "assets/images/cpu_server.svg",
-          specs: "32 ядра / 64 потоки • 2.8–3.8 GHz • Кеш 256 MB • 8-канальна пам'ять ECC DDR5 • 128 ліній PCIe • Робота 24/7.",
-          optimalFor: "pc_server",
-          feedback: "Точно в ціль! 32 ядра та корекція помилок пам'яті ECC забезпечують безвідмовну роботу сервера баз даних."
         }
       ]
     },
@@ -186,13 +186,13 @@ const MODULES_DATA = [
     // Speed ranking challenge (4 slots * 1.5 points = 6 points)
     speedLadder: {
       title: "Швидкісна драбина накопичувачів",
-      instruction: "Розташуй пристрої за реальною швидкістю передачі даних від НАЙПОВІЛЬНІШОГО (1) до НАЙШВИДШОГО (4):",
+      instruction: "Розташуй пристрої за реальною швидкістю передачі даних від НАЙПОВІЛЬНІШОГО (1) до НАЙШВИДШОГО (4) (варіанти перемішано):",
       correctOrder: ["dvd", "hdd", "sata_ssd", "nvme_ssd"],
       items: [
+        { id: "nvme_ssd", name: "NVMe M.2 PCIe 4.0 SSD (~7000 МБ/с)", speed: "7000 MB/s", icon: "assets/images/ssd.svg" },
         { id: "dvd", name: "Оптичний диск DVD (~10–16 МБ/с)", speed: "16 MB/s", icon: "assets/images/dvd.svg" },
         { id: "hdd", name: "Жорсткий диск HDD 7200 RPM (~150 МБ/с)", speed: "150 MB/s", icon: "assets/images/hdd.svg" },
-        { id: "sata_ssd", name: "SATA SSD 2.5 дюйма (~550 МБ/с)", speed: "550 MB/s", icon: "assets/images/ssd.svg" },
-        { id: "nvme_ssd", name: "NVMe M.2 PCIe 4.0 SSD (~7000 МБ/с)", speed: "7000 MB/s", icon: "assets/images/ssd.svg" }
+        { id: "sata_ssd", name: "SATA SSD 2.5\" (~550 МБ/с)", speed: "550 MB/s", icon: "assets/images/ssd.svg" }
       ]
     }
   },
@@ -275,19 +275,19 @@ const MODULES_DATA = [
     // Task 2: Interactive Table Completion (4 rows * 1.25 points = 5 points)
     tableChallenge: {
       title: "Заповнення таблиці «Класифікація пристроїв за типом вхідних даних»",
-      instruction: "Обери правильний тип вхідних даних для кожної групи пристроїв у таблиці:",
+      instruction: "Обери правильний тип вхідних даних для кожної групи пристроїв у таблиці (варіанти перемішано):",
       options: [
         { id: "symbolic", name: "Символьні та командні дані" },
         { id: "coordinate", name: "Координатні (просторові) дані" },
-        { id: "graphic", name: "Графічні (візуальні зображення)" },
+        { id: "graphic", name: "Графічні (візуальні зображення та відео)" },
         { id: "acoustic", name: "Звукові (акустичні коливання)" }
       ],
       rows: [
         {
-          id: "row_keys",
-          devices: "Клавіатура, штрихкод-сканер, пульт ДК",
-          correctType: "symbolic",
-          hint: "Введення літер, цифр, кодів та керуючих сигналів."
+          id: "row_scan",
+          devices: "Планшетний сканер, веб-камера, цифровий фотоапарат",
+          correctType: "graphic",
+          hint: "Оцифрування світлових променів у масив пікселів зображення чи відео."
         },
         {
           id: "row_mouse",
@@ -296,16 +296,16 @@ const MODULES_DATA = [
           hint: "Фіксація переміщення та координат на площині або в просторі."
         },
         {
-          id: "row_scan",
-          devices: "Планшетний сканер, веб-камера, цифровий фотоапарат",
-          correctType: "graphic",
-          hint: "Оцифрування світлових променів у масив пікселів зображення чи відео."
-        },
-        {
           id: "row_mic",
           devices: "Студійний мікрофон, диктофон, звуковий датчик",
           correctType: "acoustic",
           hint: "Перетворення тиску повітряних звукових коливань в аудіосигнал."
+        },
+        {
+          id: "row_keys",
+          devices: "Клавіатура, штрихкод-сканер, пульт ДК",
+          correctType: "symbolic",
+          hint: "Введення літер, цифр, кодів та керуючих сигналів."
         }
       ]
     }

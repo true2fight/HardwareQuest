@@ -232,14 +232,6 @@ class HardwareQuestApp {
       });
     }
 
-    const printBtn = document.getElementById("btnPrintCert");
-    if (printBtn) {
-      printBtn.addEventListener("click", () => {
-        this.playSound("click");
-        window.certificateManager.printCertificate();
-      });
-    }
-
     const restartBtn = document.getElementById("btnRestartQuest");
     if (restartBtn) {
       restartBtn.addEventListener("click", () => {
@@ -687,14 +679,23 @@ class HardwareQuestApp {
       const assignedId = this.state.mod2Ladder[slotIdx];
       const itemObj = ladderItems.find(i => i.id === assignedId);
       html += `
-        <div class="speed-slot ${itemObj ? 'filled' : ''}" onclick="app.cycleLadderItem(${slotIdx})">
-          <div class="speed-slot-num">Сходинка ${slotIdx + 1} ${slotIdx === 0 ? '(Найповільніший)' : slotIdx === 3 ? '(Найшвидший)' : ''}</div>
+        <div class="speed-slot ${itemObj ? 'filled' : ''}" style="display:flex;flex-direction:column;justify-content:space-between;padding:12px 10px;">
+          <div>
+            <div class="speed-slot-num">Сходинка ${slotIdx + 1} ${slotIdx === 0 ? '(Найповільніший)' : slotIdx === 3 ? '(Найшвидший)' : ''}</div>
+            <select class="form-input" style="padding:6px 6px;font-size:0.75rem;margin:8px 0;width:100%;text-align:left;" onchange="app.setLadderSlot(${slotIdx}, this.value)">
+              <option value="">-- Обери накопичувач --</option>
+              ${ladderItems.map(item => `
+                <option value="${item.id}" ${assignedId === item.id ? 'selected' : ''}>${item.name}</option>
+              `).join("")}
+            </select>
+          </div>
           ${itemObj ? `
-            <img src="${itemObj.icon}" style="width:36px;height:36px;margin:4px 0;" />
-            <div style="font-size:0.8rem;font-weight:700;">${itemObj.name}</div>
-            <span style="font-size:0.7rem;color:var(--cyan);">(Натисни для зміни)</span>
+            <div style="text-align:center;">
+              <img src="${itemObj.icon}" style="width:36px;height:36px;margin:2px auto;" />
+              <div style="font-size:0.75rem;font-weight:700;color:#ffffff;line-height:1.2;">${itemObj.name}</div>
+            </div>
           ` : `
-            <div style="font-size:0.8rem;color:var(--text-dim);cursor:pointer;">[Натисни, щоб обрати]</div>
+            <div style="font-size:0.75rem;color:var(--text-dim);text-align:center;">[Не обрано]</div>
           `}
         </div>
       `;
@@ -774,6 +775,13 @@ class HardwareQuestApp {
     this.playSound("click");
     this.recalculateMod2Score();
     if (reRender) this.renderModule(2);
+  }
+
+  setLadderSlot(slotIdx, itemId) {
+    this.state.mod2Ladder[slotIdx] = itemId || null;
+    this.playSound("click");
+    this.recalculateMod2Score();
+    this.renderModule(2);
   }
 
   cycleLadderItem(slotIdx) {
