@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="100%" height="100%">
+  <!-- Server Rack Frame -->
+  <rect x="25" y="15" width="130" height="145" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+  <!-- 1U Unit 1 -->
+  <rect x="32" y="24" width="116" height="24" rx="2" fill="#1e293b" stroke="#475569"/>
+  <!-- Drive trays -->
+  <rect x="36" y="28" width="12" height="16" fill="#334155"/>
+  <rect x="52" y="28" width="12" height="16" fill="#334155"/>
+  <rect x="68" y="28" width="12" height="16" fill="#334155"/>
+  <circle cx="125" cy="36" r="2.5" fill="#22c55e"/>
+  <circle cx="135" cy="36" r="2.5" fill="#00f3ff"/>
+  <!-- 1U Unit 2 -->
+  <rect x="32" y="52" width="116" height="24" rx="2" fill="#1e293b" stroke="#475569"/>
+  <rect x="36" y="56" width="12" height="16" fill="#334155"/>
+  <rect x="52" y="56" width="12" height="16" fill="#334155"/>
+  <rect x="68" y="56" width="12" height="16" fill="#334155"/>
+  <circle cx="125" cy="64" r="2.5" fill="#22c55e"/>
+  <circle cx="135" cy="64" r="2.5" fill="#eab308"/>
+  <!-- 2U Storage Array Unit 3 -->
+  <rect x="32" y="80" width="116" height="42" rx="2" fill="#1e293b" stroke="#475569"/>
+  <!-- 6 disk bays -->
+  <rect x="36" y="85" width="14" height="32" fill="#334155"/>
+  <rect x="53" y="85" width="14" height="32" fill="#334155"/>
+  <rect x="70" y="85" width="14" height="32" fill="#334155"/>
+  <rect x="87" y="85" width="14" height="32" fill="#334155"/>
+  <circle cx="125" cy="95" r="2.5" fill="#22c55e"/>
+  <circle cx="135" cy="95" r="2.5" fill="#00f3ff"/>
+  <!-- 24/7 Enterprise label -->
+  <text x="90" y="145" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="9" fill="#22c55e" text-anchor="middle">СЕРВЕР (24/7 РОБОТА)</text>
+  <text x="90" y="174" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">СЕРВЕРНА СТОЙКА</text>
+</svg>

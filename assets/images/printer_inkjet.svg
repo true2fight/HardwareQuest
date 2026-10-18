@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 150" width="100%" height="100%">
+  <!-- Printer Body -->
+  <rect x="15" y="45" width="150" height="75" rx="6" fill="#1e293b" stroke="#ec4899" stroke-width="2"/>
+  <!-- Ink Tanks Window (CMYK) -->
+  <rect x="125" y="65" width="30" height="35" rx="3" fill="#0f172a" stroke="#475569"/>
+  <rect x="128" y="72" width="4" height="24" fill="#06b6d4"/>
+  <rect x="134" y="72" width="4" height="24" fill="#ec4899"/>
+  <rect x="140" y="72" width="4" height="24" fill="#facc15"/>
+  <rect x="146" y="72" width="4" height="24" fill="#0f172a" stroke="#fff" stroke-width="0.5"/>
+  <!-- Photo coming out -->
+  <rect x="35" y="60" width="80" height="45" rx="2" fill="#fdf2f8" stroke="#f472b6"/>
+  <!-- Mini colorful photo illustration -->
+  <circle cx="55" cy="78" r="8" fill="#fb923c"/>
+  <polygon points="40,95 65,80 90,95" fill="#22c55e"/>
+  <text x="90" y="140" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#ec4899" text-anchor="middle">СТРУМЕНЕВИЙ ФОТОПРИНТЕР</text>
+</svg>

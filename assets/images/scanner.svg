@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140" width="100%" height="100%">
+  <!-- Scanner base -->
+  <rect x="15" y="35" width="150" height="80" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <!-- Glass bed area -->
+  <rect x="25" y="45" width="130" height="60" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+  <!-- Scan Light Bar (Cyan beam) -->
+  <line x1="70" y1="46" x2="70" y2="104" stroke="#00f3ff" stroke-width="4" filter="drop-shadow(0 0 6px #00f3ff)"/>
+  <!-- Scanned sheet of paper preview -->
+  <rect x="80" y="52" width="65" height="46" rx="2" fill="#ffffff" opacity="0.85"/>
+  <line x1="88" y1="60" x2="135" y2="60" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="88" y1="68" x2="130" y2="68" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="88" y1="76" x2="120" y2="76" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Open Lid (angled) -->
+  <polygon points="15,35 165,35 155,10 25,10" fill="#334155" stroke="#64748b" stroke-width="2"/>
+  <text x="90" y="130" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">ПЛАНШЕТНИЙ СКАНЕР</text>
+</svg>

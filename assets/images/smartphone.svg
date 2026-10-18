@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 180" width="100%" height="100%">
+  <!-- Smartphone Frame -->
+  <rect x="25" y="15" width="70" height="135" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+  <!-- Display Screen -->
+  <rect x="28" y="20" width="64" height="125" rx="10" fill="#1e293b"/>
+  <!-- Dynamic Island / Notch -->
+  <rect x="47" y="23" width="26" height="6" rx="3" fill="#0f172a"/>
+  <!-- UI Clock -->
+  <text x="60" y="55" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="14" fill="#f8fafc" text-anchor="middle">12:45</text>
+  <!-- Home indicator line -->
+  <rect x="46" y="138" width="28" height="3" rx="1.5" fill="#f8fafc" opacity="0.6"/>
+  <text x="60" y="170" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">СМАРТФОН</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 150" width="100%" height="100%">
+  <!-- Stand -->
+  <path d="M75 110 L85 135 L60 135 L60 140 L120 140 L120 135 L95 135 L105 110 Z" fill="#64748b"/>
+  <!-- All-in-one Screen Case -->
+  <rect x="15" y="15" width="150" height="98" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Display -->
+  <rect x="22" y="22" width="136" height="78" rx="2" fill="#0f172a"/>
+  <!-- Camera dot -->
+  <circle cx="90" cy="18" r="1.5" fill="#38bdf8"/>
+  <!-- "All in one" label inside screen -->
+  <text x="90" y="65" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="9" fill="#00f3ff" text-anchor="middle">ALL-IN-ONE (МОНОБЛОК)</text>
+  <text x="90" y="78" font-family="Segoe UI, sans-serif" font-size="7" fill="#94a3b8" text-anchor="middle">ПК + Монітор в одному корпусі</text>
+</svg>

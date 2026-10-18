@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 170" width="100%" height="100%">
+  <!-- Tablet Frame -->
+  <rect x="20" y="15" width="110" height="140" rx="12" fill="#0f172a" stroke="#a855f7" stroke-width="2.5"/>
+  <!-- Glass Screen -->
+  <rect x="28" y="25" width="94" height="118" rx="6" fill="#1e293b"/>
+  <!-- Camera punch-hole -->
+  <circle cx="75" cy="20" r="2" fill="#64748b"/>
+  <!-- App grid icons -->
+  <rect x="36" y="38" width="14" height="14" rx="3" fill="#38bdf8"/>
+  <rect x="58" y="38" width="14" height="14" rx="3" fill="#facc15"/>
+  <rect x="80" y="38" width="14" height="14" rx="3" fill="#4ade80"/>
+  <rect x="100" y="38" width="14" height="14" rx="3" fill="#ec4899"/>
+  <!-- Stylus pen alongside -->
+  <rect x="135" y="30" width="5" height="80" rx="2" fill="#cbd5e1"/>
+  <polygon points="135,110 140,110 137,118" fill="#1e293b"/>
+  <text x="75" y="166" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="9" fill="#a855f7" text-anchor="middle">ПЛАНШЕТНИЙ ПК</text>
+</svg>

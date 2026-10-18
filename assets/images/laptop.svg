@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 150" width="100%" height="100%">
+  <!-- Laptop Screen Lid (angled) -->
+  <polygon points="35,25 145,25 155,95 25,95" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Screen content -->
+  <polygon points="40,32 140,32 148,90 32,90" fill="#1e293b"/>
+  <circle cx="90" cy="60" r="14" fill="#0284c7" opacity="0.5"/>
+  <circle cx="90" cy="28" r="1.5" fill="#4ade80"/>
+  <!-- Base Chassis -->
+  <polygon points="25,95 155,95 170,120 10,120" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Keyboard & Touchpad -->
+  <polygon points="38,98 142,98 146,110 34,110" fill="#334155"/>
+  <rect x="75" y="112" width="30" height="6" rx="1" fill="#475569"/>
+  <text x="90" y="142" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">НОУТБУК (ЛЕПТОП)</text>
+</svg>

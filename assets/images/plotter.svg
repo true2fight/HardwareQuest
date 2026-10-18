@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="100%" height="100%">
+  <!-- Plotter Stand Legs -->
+  <line x1="35" y1="90" x2="25" y2="150" stroke="#64748b" stroke-width="4"/>
+  <line x1="165" y1="90" x2="175" y2="150" stroke="#64748b" stroke-width="4"/>
+  <line x1="20" y1="150" x2="45" y2="150" stroke="#475569" stroke-width="4"/>
+  <line x1="155" y1="150" x2="180" y2="150" stroke="#475569" stroke-width="4"/>
+  <line x1="30" y1="125" x2="170" y2="125" stroke="#475569" stroke-width="2"/>
+  <!-- Wide-format Body -->
+  <rect x="20" y="45" width="160" height="48" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+  <!-- Blueprint Paper Roll hanging down (A0 format) -->
+  <rect x="40" y="75" width="120" height="45" fill="#f0f9ff" stroke="#38bdf8" stroke-width="1"/>
+  <!-- Blueprint CAD lines -->
+  <line x1="50" y1="85" x2="150" y2="85" stroke="#0284c7" stroke-width="1.5"/>
+  <line x1="60" y1="95" x2="120" y2="95" stroke="#0284c7" stroke-width="1.5"/>
+  <rect x="125" y="90" width="20" height="18" fill="none" stroke="#0284c7"/>
+  <!-- Print Carriage -->
+  <rect x="80" y="48" width="22" height="12" fill="#facc15"/>
+  <text x="100" y="35" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">ПЛОТЕР (ШИРОКОФОРМАТНИЙ)</text>
+</svg>

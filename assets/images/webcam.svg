@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <!-- Monitor clip / base -->
+  <rect x="65" y="115" width="30" height="30" rx="3" fill="#334155"/>
+  <rect x="50" y="140" width="60" height="8" rx="2" fill="#1e293b" stroke="#475569"/>
+  <!-- Webcam cylindrical body -->
+  <rect x="25" y="45" width="110" height="55" rx="27" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Camera Lens rings -->
+  <circle cx="80" cy="72" r="22" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+  <circle cx="80" cy="72" r="14" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+  <circle cx="80" cy="72" r="6" fill="#0c4a6e"/>
+  <!-- Glass reflection glint -->
+  <circle cx="83" cy="69" r="3" fill="#ffffff"/>
+  <!-- Power & Privacy LED -->
+  <circle cx="45" cy="72" r="3" fill="#4ade80"/>
+  <!-- Stereo Mics -->
+  <circle cx="120" cy="68" r="2" fill="#94a3b8"/>
+  <circle cx="120" cy="76" r="2" fill="#94a3b8"/>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ramBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="heatSink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <!-- PCB -->
+  <rect x="10" y="25" width="220" height="70" rx="4" fill="url(#ramBody)" stroke="#38bdf8" stroke-width="2"/>
+  <!-- Heat spreader decorative ridges -->
+  <rect x="20" y="30" width="200" height="40" rx="3" fill="url(#heatSink)"/>
+  <!-- RGB Bar on top -->
+  <path d="M22 30 H218 V34 H22 Z" fill="url(#ramBody)"/>
+  <rect x="25" y="30" width="190" height="4" fill="#a855f7" filter="drop-shadow(0 0 3px #c084fc)"/>
+  <!-- Memory Chips -->
+  <rect x="30" y="40" width="26" height="24" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <rect x="65" y="40" width="26" height="24" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <rect x="100" y="40" width="26" height="24" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <rect x="145" y="40" width="26" height="24" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <rect x="180" y="40" width="26" height="24" rx="2" fill="#334155" stroke="#475569" stroke-width="1"/>
+  <text x="120" y="86" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="11" fill="#e0f2fe" text-anchor="middle">DDR5 32GB 6000MHz</text>
+  <!-- Golden connector pins -->
+  <g fill="#facc15">
+    <rect x="16" y="93" width="90" height="10"/>
+    <!-- Key notch in center -->
+    <rect x="115" y="93" width="105" height="10"/>
+  </g>
+  <!-- Individual pin lines -->
+  <path d="M20 93 V103 M25 93 V103 M30 93 V103 M35 93 V103 M40 93 V103 M45 93 V103 M50 93 V103 M55 93 V103 M60 93 V103 M65 93 V103 M70 93 V103 M75 93 V103 M80 93 V103 M85 93 V103 M90 93 V103 M95 93 V103 M100 93 V103 M120 93 V103 M125 93 V103 M130 93 V103 M135 93 V103 M140 93 V103 M145 93 V103 M150 93 V103 M155 93 V103 M160 93 V103 M165 93 V103 M170 93 V103 M175 93 V103 M180 93 V103 M185 93 V103 M190 93 V103 M195 93 V103 M200 93 V103 M205 93 V103 M210 93 V103 M215 93 V103" stroke="#854d0e" stroke-width="1"/>
+</svg>

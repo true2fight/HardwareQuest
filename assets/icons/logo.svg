@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="100%" height="100%">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Futuristic Chip Icon -->
+  <g transform="translate(5, 5)">
+    <rect x="2" y="2" width="46" height="46" rx="8" fill="#0f172a" stroke="url(#logoGrad)" stroke-width="2.5"/>
+    <!-- Glowing core -->
+    <rect x="14" y="14" width="22" height="22" rx="4" fill="#0284c7" filter="drop-shadow(0 0 4px #00f3ff)"/>
+    <polygon points="25,18 31,29 19,29" fill="#ffffff"/>
+    <!-- Traces -->
+    <line x1="2" y1="16" x2="12" y2="16" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="2" y1="34" x2="12" y2="34" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="38" y1="16" x2="48" y2="16" stroke="#a855f7" stroke-width="2"/>
+    <line x1="38" y1="34" x2="48" y2="34" stroke="#a855f7" stroke-width="2"/>
+  </g>
+  <!-- Text Brand -->
+  <text x="65" y="28" font-family="Montserrat, Segoe UI, sans-serif" font-weight="900" font-size="18" fill="url(#logoGrad)" letter-spacing="1">HARDWARE<tspan fill="#f8fafc">QUEST</tspan></text>
+  <text x="66" y="44" font-family="Segoe UI, sans-serif" font-weight="600" font-size="10" fill="#94a3b8" letter-spacing="1.5">ЗБЕРИ СВІЙ ПК • 8 КЛАС</text>
+</svg>

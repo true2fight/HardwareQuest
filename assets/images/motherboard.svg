@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- PCB -->
+  <rect x="10" y="10" width="180" height="180" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="2.5"/>
+  <!-- CPU Socket -->
+  <rect x="70" y="40" width="60" height="60" rx="4" fill="#1e293b" stroke="#facc15" stroke-width="2"/>
+  <circle cx="100" cy="70" r="16" fill="#334155"/>
+  <text x="100" y="74" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="8" fill="#facc15" text-anchor="middle">SOCKET</text>
+  <!-- RAM Slots -->
+  <rect x="145" y="35" width="8" height="70" rx="1" fill="#0284c7" stroke="#38bdf8"/>
+  <rect x="160" y="35" width="8" height="70" rx="1" fill="#0284c7" stroke="#38bdf8"/>
+  <!-- PCIe Slots -->
+  <rect x="30" y="120" width="100" height="10" rx="2" fill="#475569" stroke="#94a3b8"/>
+  <rect x="30" y="145" width="70" height="8" rx="2" fill="#334155" stroke="#64748b"/>
+  <!-- Chipset with heatsink -->
+  <rect x="140" y="130" width="35" height="35" rx="3" fill="#0284c7" stroke="#38bdf8"/>
+  <!-- VRM Heatsink -->
+  <rect x="40" y="38" width="20" height="64" rx="2" fill="#475569"/>
+  <!-- Back IO panel -->
+  <rect x="12" y="25" width="14" height="60" fill="#334155"/>
+  <text x="100" y="180" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">МАТЕРИНСЬКА ПЛАТА</text>
+</svg>

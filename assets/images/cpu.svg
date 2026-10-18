@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cpuBase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="cpuCap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#cbd5e1"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="goldPin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+  </defs>
+  <!-- PCB Substrate -->
+  <rect x="20" y="20" width="160" height="160" rx="12" fill="#047857" stroke="#10b981" stroke-width="3"/>
+  <!-- Corner notch -->
+  <polygon points="20,40 40,20 20,20" fill="#facc15"/>
+  <!-- Trace lines -->
+  <path d="M40 30 H70 V50 M160 30 H130 V50 M40 170 H70 V150 M160 170 H130 V150" stroke="#34d399" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- Gold contact dots -->
+  <circle cx="35" cy="70" r="3" fill="#facc15"/>
+  <circle cx="35" cy="90" r="3" fill="#facc15"/>
+  <circle cx="35" cy="110" r="3" fill="#facc15"/>
+  <circle cx="35" cy="130" r="3" fill="#facc15"/>
+  <circle cx="165" cy="70" r="3" fill="#facc15"/>
+  <circle cx="165" cy="90" r="3" fill="#facc15"/>
+  <circle cx="165" cy="110" r="3" fill="#facc15"/>
+  <circle cx="165" cy="130" r="3" fill="#facc15"/>
+  <!-- Integrated Heat Spreader (IHS) -->
+  <rect x="45" y="45" width="110" height="110" rx="8" fill="url(#cpuCap)" stroke="#475569" stroke-width="2"/>
+  <rect x="52" y="52" width="96" height="96" rx="4" fill="#334155" opacity="0.15"/>
+  <!-- CPU Branding / Text -->
+  <text x="100" y="85" font-family="Segoe UI, sans-serif" font-weight="900" font-size="16" fill="#0f172a" text-anchor="middle" letter-spacing="2">CPU CORE</text>
+  <text x="100" y="105" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="12" fill="#1e293b" text-anchor="middle">8 CORES • 4.5 GHz</text>
+  <text x="100" y="122" font-family="Segoe UI, sans-serif" font-size="10" fill="#475569" text-anchor="middle">LGA 1700 / AM5</text>
+  <circle cx="62" cy="62" r="3" fill="#64748b"/>
+</svg>
