@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <rect x="25" y="25" width="110" height="110" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+  <!-- Many small micro pins -->
+  <g fill="#ca8a04">
+    <rect x="35" y="15" width="6" height="10"/>
+    <rect x="55" y="15" width="6" height="10"/>
+    <rect x="75" y="15" width="6" height="10"/>
+    <rect x="95" y="15" width="6" height="10"/>
+    <rect x="115" y="15" width="6" height="10"/>
+  </g>
+  <text x="80" y="65" font-family="Montserrat, Segoe UI, sans-serif" font-weight="900" font-size="9" fill="#facc15" text-anchor="middle">MICRO ARM IOT</text>
+  <text x="80" y="82" font-family="Segoe UI, sans-serif" font-size="8.5" fill="#f8fafc" text-anchor="middle">1 мікроядро • 120 MHz</text>
+  <text x="80" y="98" font-family="Segoe UI, sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">512 KB SRAM • 0.1 Вт</text>
+  <text x="80" y="112" font-family="Segoe UI, sans-serif" font-size="7.5" fill="#f59e0b" text-anchor="middle">Лише для датчиків/годинників</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <rect x="15" y="15" width="130" height="130" rx="8" fill="#18181b" stroke="#ef4444" stroke-width="2"/>
+  <rect x="35" y="35" width="90" height="90" rx="4" fill="#27272a" stroke="#71717a" stroke-width="1.5"/>
+  <text x="80" y="63" font-family="Montserrat, Segoe UI, sans-serif" font-weight="900" font-size="10" fill="#ef4444" text-anchor="middle">MINING ASIC CHIP</text>
+  <text x="80" y="80" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="8.5" fill="#f8fafc" text-anchor="middle">Тільки хеш SHA-256</text>
+  <text x="80" y="96" font-family="Segoe UI, sans-serif" font-size="8" fill="#fca5a5" text-anchor="middle">Не запускає Windows/ігри</text>
+  <text x="80" y="112" font-family="Segoe UI, sans-serif" font-size="7.5" fill="#a1a1aa" text-anchor="middle">Без інструкцій x86 ПК</text>
+</svg>

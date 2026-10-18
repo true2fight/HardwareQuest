@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <rect x="15" y="15" width="130" height="130" rx="10" fill="#7c3aed" stroke="#c084fc" stroke-width="2.5"/>
+  <polygon points="15,30 30,15 15,15" fill="#facc15"/>
+  <rect x="35" y="35" width="90" height="90" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="80" y="63" font-family="Montserrat, Segoe UI, sans-serif" font-weight="900" font-size="11" fill="#f8fafc" text-anchor="middle">GAMING 3D-V</text>
+  <text x="80" y="80" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#38bdf8" text-anchor="middle">8C / 16T • 5.0 GHz</text>
+  <text x="80" y="97" font-family="Segoe UI, sans-serif" font-weight="bold" font-size="9" fill="#facc15" text-anchor="middle">96 MB L3 Cache</text>
+  <text x="80" y="112" font-family="Segoe UI, sans-serif" font-weight="600" font-size="8" fill="#e9d5ff" text-anchor="middle">Високий FPS в іграх</text>
+</svg>

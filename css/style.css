@@ -1624,3 +1624,18 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
   }
 }
+
+/* Module 1: CPU Selection Showcase Enhancements */
+.cpu-showcase-card {
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.cpu-showcase-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyan) !important;
+  box-shadow: 0 8px 20px rgba(0, 243, 255, 0.15);
+}
+
+.target-pc-card {
+  transition: border-color 0.25s, box-shadow 0.25s;
+}

@@ -51,10 +51,10 @@
         <!-- Student Info Tag (Dynamic) -->
         <div class="student-tag" id="hudStudentTag" style="display:none;"></div>
 
-        <!-- Score Badge -->
+        <!-- Score Badge (out of 100) -->
         <div class="score-badge" title="Загальний бал квесту">
           <span>🏆</span>
-          <span id="hudScoreValue">0 б.</span>
+          <span id="hudScoreValue">0 / 100 б.</span>
         </div>
 
         <!-- Audio Toggle Button -->
@@ -133,7 +133,7 @@
 
         <h1 class="hero-title">Апаратне забезпечення<br>персонального комп'ютера</h1>
         <p class="hero-subtitle">
-          Пройди захопливий квест із 6 ігрових модулів, навчися підбирати комплектуючі як справжній комп'ютерний інженер та отримай офіційний іменний PDF-сертифікат з оцінкою для вчителя інформатики!
+          Пройди захопливий квест із 6 ігрових модулів, навчися підбирати комплектуючі як справжній комп'ютерний інженер та отримай офіційний іменний PDF-сертифікат з оцінкою!
         </p>
 
         <!-- Feature cards -->
@@ -154,7 +154,7 @@
             </div>
             <div class="feature-text">
               <h4>12-бальна шкала оцінювання</h4>
-              <p>Миттєвий підрахунок результату відповідно до критеріїв навчальної програми України.</p>
+              <p>Миттєвий підрахунок результату відповідно до критеріїв навчальної програми України (макс. 100 балів).</p>
             </div>
           </div>
 
@@ -164,29 +164,18 @@
             </div>
             <div class="feature-text">
               <h4>Іменний PDF-сертифікат</h4>
-              <p>Формування офіційного документа формату А4 для звіту перед учителем або портфоліо.</p>
+              <p>Автоматичне формування офіційного сертифіката формату А4 для підтвердження твоїх досягнень.</p>
             </div>
           </div>
         </div>
 
-        <!-- Student Registration Form -->
+        <!-- Student Registration Form (Only Full Name) -->
         <div class="registration-box">
           <form id="studentRegistrationForm">
             <div class="form-group">
               <label for="studentFullName" class="form-label">Прізвище та Ім'я учня / учениці: <span style="color:var(--cyan)">*</span></label>
               <input type="text" id="studentFullName" class="form-input" placeholder="Наприклад: Шевченко Дарина" required autocomplete="name">
               <div class="form-hint">Ці дані будуть надруковані у твоєму іменному PDF-сертифікаті.</div>
-            </div>
-
-            <div class="form-group">
-              <label for="studentClassSelect" class="form-label">Клас: <span style="color:var(--cyan)">*</span></label>
-              <select id="studentClassSelect" class="form-input">
-                <option value="8-А">8-А клас</option>
-                <option value="8-Б">8-Б клас</option>
-                <option value="8-В">8-В клас</option>
-                <option value="8-Г">8-Г клас</option>
-                <option value="8 клас">8 клас (загальний)</option>
-              </select>
             </div>
 
             <div class="start-actions">
@@ -206,7 +195,6 @@
          SCREEN 2: INTERACTIVE MODULE VIEW (MODES 1-6)
          ==================================================================== -->
     <section class="screen-view" id="moduleView">
-      <!-- Module Header Card -->
       <div class="module-header-card">
         <div class="module-header-info">
           <div class="module-header-icon">
@@ -233,14 +221,12 @@
       </div>
 
       <!-- Dynamic Interactive Workspace -->
-      <div class="workspace-card" id="moduleInteractiveArea">
-        <!-- Rendered dynamically by app.js based on currentModuleId -->
-      </div>
+      <div class="workspace-card" id="moduleInteractiveArea"></div>
 
       <!-- Module Navigation Footer -->
       <div class="module-footer-nav">
         <div class="module-feedback-badge">
-          <span>💡 Бали зберігаються автоматично після кожної відповіді.</span>
+          <span>💡 Бали зберігаються автоматично після кожного виконаного завдання.</span>
         </div>
         <div>
           <button class="btn-quest btn-quest-primary" id="btnNextModule">
@@ -273,15 +259,15 @@
           </div>
           <div class="metric-box">
             <div class="metric-label">Набрані бали</div>
-            <div class="metric-val" id="resScoreValue">95 / 100</div>
+            <div class="metric-val" id="resScoreValue">100 / 100</div>
           </div>
           <div class="metric-box">
             <div class="metric-label">Успішність</div>
-            <div class="metric-val" id="resPercentValue">95%</div>
+            <div class="metric-val" id="resPercentValue">100%</div>
           </div>
         </div>
 
-        <!-- Action Toolbar -->
+        <!-- Action Toolbar (Without Copy Report button) -->
         <div class="cert-action-bar">
           <button class="btn-quest btn-quest-primary" id="btnDownloadPDF">
             <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -301,14 +287,6 @@
             Роздрукувати сертифікат
           </button>
 
-          <button class="btn-quest btn-quest-secondary" id="btnCopyResults">
-            <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            Копіювати звіт для вчителя
-          </button>
-
           <button class="btn-quest btn-quest-secondary" id="btnRestartQuest">
             🔄 Пройти знову
           </button>
@@ -316,7 +294,7 @@
       </div>
 
       <!-- ==================================================================
-           A4 LANDSCAPE CERTIFICATE TEMPLATE
+           A4 LANDSCAPE CERTIFICATE TEMPLATE (WITHOUT TEACHER SIGNATURE)
            ================================================================== -->
       <div class="certificate-preview-wrapper">
         <div class="certificate-container" id="certificateToExport">
@@ -345,7 +323,7 @@
 
               <div class="cert-id-badge">
                 <span class="label">ID Сертифіката:</span>
-                <span class="val" id="certVerificationId">HQ-2026-8A-8742</span>
+                <span class="val" id="certVerificationId">HQ-2026-8742</span>
               </div>
             </div>
 
@@ -357,9 +335,8 @@
 
             <!-- Recipient Section -->
             <div class="cert-recipient-section">
-              <div class="cert-present-text">Цим підтверджується, що учень / учениця</div>
+              <div class="cert-present-text">Цим підтверджується, що</div>
               <div class="cert-student-name" id="certStudentName">Шевченко Дарина</div>
-              <div class="cert-student-class" id="certStudentClass">Учень / Учениця 8-А класу</div>
             </div>
 
             <!-- Topic Box -->
@@ -374,7 +351,7 @@
             <div class="cert-results-grid">
               <div class="cert-stat-box">
                 <div class="cert-stat-label">Підсумкові бали</div>
-                <div class="cert-stat-value" id="certPointsEarned">95 / 100</div>
+                <div class="cert-stat-value" id="certPointsEarned">100 / 100</div>
               </div>
 
               <div style="text-align:center;">
@@ -386,25 +363,24 @@
 
               <div class="cert-stat-box">
                 <div class="cert-stat-label">Відсоток точності</div>
-                <div class="cert-stat-value" id="certPercentValue">95%</div>
+                <div class="cert-stat-value" id="certPercentValue">100%</div>
               </div>
             </div>
 
-            <!-- Footer: Date, Seal, Teacher Signature -->
+            <!-- Footer: Date, Seal, Digital Verification (NO signature field) -->
             <div class="cert-footer">
               <div class="cert-date-block">
-                <div>Дата видачі: <strong id="certIssueDate">18 жовтня 2026 року</strong></div>
-                <div style="font-size:10px;color:#94a3b8;margin-top:2px;">Сформовано автоматично в онлайн-сесії</div>
+                <div>Дата видачі: <strong id="certIssueDate">19 жовтня 2026 року</strong></div>
+                <div style="font-size:10px;color:#94a3b8;margin-top:2px;">Сформовано автоматично за результатами квесту</div>
               </div>
 
               <div class="cert-seal-block">
                 <img src="assets/icons/badge-gold.svg" alt="Офіційна відзнака" class="cert-seal-image">
               </div>
 
-              <div class="cert-signature-block">
-                <div class="cert-sign-line"></div>
-                <div class="cert-sign-teacher">Вчитель інформатики</div>
-                <div class="cert-sign-label">(підпис / оцінка в журнал)</div>
+              <div class="cert-status-block">
+                <span class="cert-status-badge">✓ Електронно верифіковано</span>
+                <span style="font-size:10px;color:#64748b;margin-top:4px;">Дійсний для шкільного звіту</span>
               </div>
             </div>
           </div>
@@ -423,40 +399,40 @@
       <h3 style="color:var(--cyan);margin-bottom:1rem;font-size:1.3rem;">ℹ️ Правила проходження та критерії оцінювання</h3>
       
       <p style="font-size:0.9rem;color:#cbd5e1;line-height:1.5;margin-bottom:1rem;">
-        Веб-тренажер <strong>«HardwareQuest: Збери свій ПК»</strong> створено для учнів 8 класів закладів загальної середньої освіти України. Він містить 6 практичних модулів:
+        Веб-тренажер <strong>«HardwareQuest: Збери свій ПК»</strong> створено для учнів 8 класів. Максимальна можлива сума балів дорівнює <strong>100 балам</strong>, розподілених між 6 навчальними модулями:
       </p>
 
       <ul style="margin-left:1.5rem;font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.5rem;">
-        <li><strong>Модуль 1:</strong> Процесор та його характеристики (Cores, GHz, Cache, Socket).</li>
-        <li><strong>Модуль 2:</strong> Пристрої збереження інформації (RAM vs ROM, HDD, SSD, Flash).</li>
-        <li><strong>Модуль 3:</strong> Пристрої введення інформації (сканер, мікрофон, графічний планшет тощо).</li>
-        <li><strong>Модуль 4:</strong> Пристрої виведення інформації (монітори, лазерні, струменеві та 3D-принтери).</li>
-        <li><strong>Модуль 5:</strong> Мережеві пристрої (маршрутизатори, світчі, оптоволоконні модеми, NIC).</li>
-        <li><strong>Модуль 6:</strong> Види сучасних комп'ютерів (десктопи, ноутбуки, моноблоки, сервери).</li>
+        <li><strong>Модуль 1:</strong> Процесор та його характеристики (15 балів).</li>
+        <li><strong>Модуль 2:</strong> Пристрої збереження інформації (20 балів).</li>
+        <li><strong>Модуль 3:</strong> Пристрої введення інформації (15 балів).</li>
+        <li><strong>Модуль 4:</strong> Пристрої виведення інформації (15 балів).</li>
+        <li><strong>Модуль 5:</strong> Мережеві пристрої (20 балів).</li>
+        <li><strong>Модуль 6:</strong> Види сучасних комп'ютерів (15 балів).</li>
       </ul>
 
       <h4 style="color:#ffffff;margin-bottom:8px;font-size:1rem;">Критерії переведення балів у 12-бальну оцінку:</h4>
       <table class="grading-table">
         <thead>
           <tr>
-            <th>Відсоток успішності</th>
-            <th>Бал (1–12)</th>
-            <th>Рівень досягнень</th>
+            <th>Відсоток успішності (бали)</th>
+            <th>Оцінка (1–12)</th>
+            <th>Рівень навчальних досягнень</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>93% – 100%</td><td><strong>12</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
-          <tr><td>85% – 92%</td><td><strong>11</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
-          <tr><td>78% – 84%</td><td><strong>10</strong></td><td style="color:#10b981;">Високий</td></tr>
-          <tr><td>70% – 77%</td><td><strong>9</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
-          <tr><td>62% – 69%</td><td><strong>8</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
-          <tr><td>54% – 61%</td><td><strong>7</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
-          <tr><td>46% – 53%</td><td><strong>6</strong></td><td style="color:#f59e0b;">Середній</td></tr>
-          <tr><td>38% – 45%</td><td><strong>5</strong></td><td style="color:#f59e0b;">Середній</td></tr>
-          <tr><td>30% – 37%</td><td><strong>4</strong></td><td style="color:#f59e0b;">Середній</td></tr>
-          <tr><td>20% – 29%</td><td><strong>3</strong></td><td style="color:#ef4444;">Початковий</td></tr>
-          <tr><td>10% – 19%</td><td><strong>2</strong></td><td style="color:#ef4444;">Початковий</td></tr>
-          <tr><td>0% – 9%</td><td><strong>1</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+          <tr><td>93% – 100% (93–100 б.)</td><td><strong>12</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
+          <tr><td>85% – 92% (85–92 б.)</td><td><strong>11</strong></td><td style="color:#10b981;">Високий (Відмінно)</td></tr>
+          <tr><td>78% – 84% (78–84 б.)</td><td><strong>10</strong></td><td style="color:#10b981;">Високий</td></tr>
+          <tr><td>70% – 77% (70–77 б.)</td><td><strong>9</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>62% – 69% (62–69 б.)</td><td><strong>8</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>54% – 61% (54–61 б.)</td><td><strong>7</strong></td><td style="color:#38bdf8;">Достатній</td></tr>
+          <tr><td>46% – 53% (46–53 б.)</td><td><strong>6</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>38% – 45% (38–45 б.)</td><td><strong>5</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>30% – 37% (30–37 б.)</td><td><strong>4</strong></td><td style="color:#f59e0b;">Середній</td></tr>
+          <tr><td>20% – 29% (20–29 б.)</td><td><strong>3</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+          <tr><td>10% – 19% (10–19 б.)</td><td><strong>2</strong></td><td style="color:#ef4444;">Початковий</td></tr>
+          <tr><td>0% – 9% (0–9 б.)</td><td><strong>1</strong></td><td style="color:#ef4444;">Початковий</td></tr>
         </tbody>
       </table>
 
@@ -468,13 +444,10 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (Cleaned according to requirement 4) -->
   <footer class="app-footer">
     <p>
       Навчально-ігровий веб-тренажер <strong>«HardwareQuest: Збери свій ПК»</strong> • Курс «Інформатика» 8 клас
-    </p>
-    <p style="font-size:0.75rem;margin-top:4px;">
-      Клієнтський додаток оптимізовано для публікації на GitHub Pages • Всі права захищено © 2026
     </p>
   </footer>
 

@@ -3,7 +3,6 @@
  * Designed for A4 Landscape print and PDF generation (297mm x 210mm)
  */
 
-/* Container wrapping the certificate on the web page */
 .certificate-preview-wrapper {
   display: flex;
   justify-content: center;
@@ -13,7 +12,6 @@
   overflow-x: auto;
 }
 
-/* Base A4 Landscape dimensions: aspect ratio ~ 1.414 (297mm / 210mm) */
 .certificate-container {
   width: 1000px;
   min-width: 900px;
@@ -31,7 +29,6 @@
   flex-direction: column;
 }
 
-/* Background watermark and high-tech circuitry pattern */
 .certificate-bg-pattern {
   position: absolute;
   top: 0;
@@ -48,7 +45,6 @@
   z-index: 1;
 }
 
-/* Outer ornate security border */
 .certificate-outer-border {
   position: absolute;
   top: 18px;
@@ -61,7 +57,6 @@
   z-index: 2;
 }
 
-/* Inner thin accent frame */
 .certificate-inner-border {
   position: absolute;
   top: 26px;
@@ -73,7 +68,6 @@
   z-index: 2;
 }
 
-/* Ornate cyber corners */
 .cert-corner {
   position: absolute;
   width: 24px;
@@ -103,11 +97,10 @@
   border-width: 0 4px 4px 0;
 }
 
-/* Certificate Body Content Layout */
 .certificate-content {
   position: relative;
   z-index: 4;
-  padding: 42px 55px;
+  padding: 45px 55px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -178,12 +171,12 @@
 /* Main Certificate Title */
 .cert-title-section {
   text-align: center;
-  margin: 10px 0 8px 0;
+  margin: 14px 0 8px 0;
 }
 
 .cert-title-section h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 900;
   letter-spacing: 4px;
   color: #0f172a;
@@ -199,44 +192,37 @@
   letter-spacing: 2px;
 }
 
-/* Student Recipient Presentation */
+/* Student Recipient */
 .cert-recipient-section {
   text-align: center;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 .cert-present-text {
-  font-size: 13px;
+  font-size: 14px;
   color: #64748b;
   font-style: italic;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
 }
 
 .cert-student-name {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 900;
   color: #0369a1;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border-bottom: 2px solid #0284c7;
   display: inline-block;
-  padding: 0 25px 4px 25px;
-  min-width: 320px;
-}
-
-.cert-student-class {
-  margin-top: 6px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #475569;
+  padding: 0 35px 6px 35px;
+  min-width: 360px;
 }
 
 /* Topic and achievements */
 .cert-topic-section {
   text-align: center;
-  margin: 8px 0;
+  margin: 10px 0;
   background: rgba(2, 132, 199, 0.04);
-  padding: 10px 18px;
+  padding: 12px 20px;
   border-radius: 8px;
   border-left: 4px solid #0284c7;
 }
@@ -259,8 +245,8 @@
   grid-template-columns: 1fr 1.6fr 1fr;
   align-items: center;
   gap: 16px;
-  margin: 10px 0;
-  padding: 10px 18px;
+  margin: 12px 0;
+  padding: 12px 18px;
   background: #f8fafc;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
@@ -289,7 +275,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 8px;
   color: #ffffff;
   background: linear-gradient(135deg, #0284c7, #0369a1);
@@ -303,18 +289,18 @@
 }
 
 .cert-grade-badge .grade-text {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 3px;
 }
 
-/* Footer with teacher signature & official seal */
+/* Footer: Clean layout without signature field */
 .cert-footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   border-top: 2px solid #e2e8f0;
   padding-top: 14px;
 }
@@ -330,39 +316,33 @@
 
 .cert-seal-block {
   text-align: center;
-  position: relative;
 }
 
 .cert-seal-image {
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
 }
 
-.cert-signature-block {
-  text-align: center;
-  min-width: 220px;
-}
-
-.cert-sign-line {
-  width: 200px;
-  height: 1px;
-  background: #334155;
-  margin: 0 auto 6px auto;
-}
-
-.cert-sign-label {
-  font-size: 11px;
-  color: #64748b;
-  font-weight: 600;
-}
-
-.cert-sign-teacher {
+.cert-status-block {
+  text-align: right;
   font-size: 12px;
+  color: #10b981;
   font-weight: 700;
-  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-/* Print and PDF Optimization Rules */
+.cert-status-badge {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid #10b981;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 @media print {
   body {
     background: #ffffff !important;
@@ -371,7 +351,6 @@
     margin: 0 !important;
   }
 
-  /* Hide all UI elements except certificate */
   header, 
   nav, 
   .hud-container, 
