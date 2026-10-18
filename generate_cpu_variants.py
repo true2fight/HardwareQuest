@@ -40,14 +40,14 @@ write_svg(os.path.join(images_dir, "cpu_server.svg"), '''<svg xmlns="http://www.
   <text x="90" y="102" font-family="Segoe UI, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">128 ліній PCIe 5.0 • Робота 24/7</text>
 </svg>''')
 
-# 4. Outdated Dual Core CPU
+# 4. Celeron Dual Core CPU
 write_svg(os.path.join(images_dir, "cpu_outdated.svg"), '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
   <rect x="15" y="15" width="130" height="130" rx="10" fill="#334155" stroke="#64748b" stroke-width="2"/>
   <rect x="35" y="35" width="90" height="90" rx="6" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="80" y="65" font-family="Montserrat, Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#f1f5f9" text-anchor="middle">LEGACY DUAL-CORE</text>
+  <text x="80" y="65" font-family="Montserrat, Segoe UI, sans-serif" font-weight="bold" font-size="10" fill="#f1f5f9" text-anchor="middle">CELERON DUAL-CORE</text>
   <text x="80" y="82" font-family="Segoe UI, sans-serif" font-size="9" fill="#cbd5e1" text-anchor="middle">2 ядра / 2 потоки</text>
-  <text x="80" y="98" font-family="Segoe UI, sans-serif" font-size="9" fill="#ef4444" text-anchor="middle">1.8 GHz • Лише 2MB кеш</text>
-  <text x="80" y="112" font-family="Segoe UI, sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">Застарілий (гальмує)</text>
+  <text x="80" y="98" font-family="Segoe UI, sans-serif" font-size="9" fill="#cbd5e1" text-anchor="middle">1.1–2.4 GHz • 2MB кеш</text>
+  <text x="80" y="112" font-family="Segoe UI, sans-serif" font-size="8" fill="#94a3b8" text-anchor="middle">Базовий рівень (TDP 6W)</text>
 </svg>''')
 
 # 5. IoT Microcontroller Chip

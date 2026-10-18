@@ -53,13 +53,13 @@ const MODULES_DATA = [
       ],
       availableCpus: [
         {
-          id: "cpu_office",
-          name: "Core i3-12100 / Ryzen 3 4300G",
-          categoryName: "Збалансований процесор з iGPU",
-          icon: "assets/images/cpu_office.svg",
-          specs: "4 ядра / 8 потоків • 3.3–4.3 GHz • Кеш 12 MB • Вбудована графіка UHD iGPU • TDP 60 Вт • Доступна ціна.",
-          optimalFor: "pc_office",
-          feedback: "Ідеальний вибір для офісу! 4 швидких ядер достатньо для навчання, а вбудоване відеоядро заощаджує кошти на відеокарті."
+          id: "cpu_outdated",
+          name: "Intel Celeron N4020 Dual-Core",
+          categoryName: "Двоядерний енергоефективний чип",
+          icon: "assets/images/cpu_outdated.svg",
+          specs: "2 ядра / 2 потоки • 1.1–2.4 GHz • Лише 2 MB кеш • Базова графіка UHD 600 • Низьке енергоспоживання 6 Вт.",
+          optimalFor: null,
+          feedback: "Невдалий вибір! Лише 2 слабких ядра з низькою базовою частотою 1.1 GHz та 2 MB кешу не впораються навіть із плавним переглядом сучасних веб-сторінок і відеоуроків."
         },
         {
           id: "cpu_gaming",
@@ -71,24 +71,6 @@ const MODULES_DATA = [
           feedback: "Чудовий вибір для геймінгу! 8 ядер та велетенський кеш 96 MB дають максимальний FPS та відсутність просідань кадрів."
         },
         {
-          id: "cpu_server",
-          name: "AMD EPYC 9354 / Intel Xeon Scalable",
-          categoryName: "Багатоядерний серверний гігант",
-          icon: "assets/images/cpu_server.svg",
-          specs: "32 ядра / 64 потоки • 2.8–3.8 GHz • Кеш 256 MB • 8-канальна пам'ять ECC DDR5 • 128 ліній PCIe • Робота 24/7.",
-          optimalFor: "pc_server",
-          feedback: "Точно в ціль! 32 ядра та корекція помилок пам'яті ECC забезпечують безвідмовну роботу сервера баз даних."
-        },
-        {
-          id: "cpu_outdated",
-          name: "Застарілий 2-ядерник Celeron N-серії",
-          categoryName: "Слабкий застарілий чип",
-          icon: "assets/images/cpu_outdated.svg",
-          specs: "2 ядра / 2 потоки • 1.1–2.4 GHz • Лише 2 MB кеш • Не підтримує сучасні інструкції AVX2 • Застаріла архітектура.",
-          optimalFor: null,
-          feedback: "Невдалий вибір! 2 слабких ядра не впораються навіть із плавним переглядом відеоуроків та сучасними веб-сторінками."
-        },
-        {
           id: "cpu_iot",
           name: "ARM Cortex-M4 Microcontroller",
           categoryName: "Ультрамобільний мікроконтролер IoT",
@@ -98,6 +80,15 @@ const MODULES_DATA = [
           feedback: "Цей чип створений для розумних годинників, пральних машин або датчиків температури, а не для ПК чи серверів!"
         },
         {
+          id: "cpu_office",
+          name: "Core i3-12100 / Ryzen 3 4300G",
+          categoryName: "Збалансований процесор з iGPU",
+          icon: "assets/images/cpu_office.svg",
+          specs: "4 ядра / 8 потоків • 3.3–4.3 GHz • Кеш 12 MB • Вбудована графіка UHD iGPU • TDP 60 Вт • Доступна ціна.",
+          optimalFor: "pc_office",
+          feedback: "Ідеальний вибір для офісу! 4 швидких ядер достатньо для навчання, а вбудоване відеоядро заощаджує кошти на відеокарті."
+        },
+        {
           id: "cpu_asic",
           name: "Specialized Crypto ASIC Microchip",
           categoryName: "Вузькоспеціалізований чип майнінгу",
@@ -105,6 +96,15 @@ const MODULES_DATA = [
           specs: "Фіксований обчислювач хешів SHA-256 • Не підтримує команди x86 • Не може запустити Windows, офісні програми чи ігри.",
           optimalFor: null,
           feedback: "Цей чип уміє рахувати лише один криптографічний алгоритм і взагалі не здатний запустити жодну програму на ПК!"
+        },
+        {
+          id: "cpu_server",
+          name: "AMD EPYC 9354 / Intel Xeon Scalable",
+          categoryName: "Багатоядерний серверний гігант",
+          icon: "assets/images/cpu_server.svg",
+          specs: "32 ядра / 64 потоки • 2.8–3.8 GHz • Кеш 256 MB • 8-канальна пам'ять ECC DDR5 • 128 ліній PCIe • Робота 24/7.",
+          optimalFor: "pc_server",
+          feedback: "Точно в ціль! 32 ядра та корекція помилок пам'яті ECC забезпечують безвідмовну роботу сервера баз даних."
         }
       ]
     },
